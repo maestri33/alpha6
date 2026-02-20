@@ -1,0 +1,27 @@
+# Docker Compose - Alpha6
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: alpha6-prod
+    restart: always
+    
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Secrets configurados no Coolify
+      - DATABASE_URL=${DATABASE_URL:-}
+      - API_KEY=${API_KEY:-}
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.alpha6.rule=Host(`${DOMAIN:-alpha6.m33.live}`)"
+      - "traefik.http.routers.alpha6.tls=true"
+      - "traefik.http.routers.alpha6.tls.certresolver=letsencrypt"

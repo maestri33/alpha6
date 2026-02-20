@@ -1,0 +1,13 @@
+project:
+  name: alpha6
+  created: 2026-02-20T18:55:00Z
+  
+domains:
+  production: alpha6.m33.live
+  staging: staging.alpha6.m33.live
+  dev: dev.alpha6.m33.live
+  
+code_servers:
+  victor:
+    domain: victor.alpha6.codesrv.m33.live
+    created: false
