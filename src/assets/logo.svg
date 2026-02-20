@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- V -->
+  <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#2d2d2d"/>
+  <!-- 7 -->
+  <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#2d2d2d"/>
+  <!-- M shadow -->
+  <polygon points="145,55 160,35 160,90 145,90" fill="#a0a0a0"/>
+  <!-- M -->
+  <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#d4af37"/>
+</svg>
