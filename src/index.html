@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V7M Holding - Excelência em Gestão Empresarial</title>
+    <title>V7M Holding</title>
+    <meta name="description" content="V7M Holding - Gestão de investimentos em educação, tecnologia e engenharia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-black: #1a1a1a;
-            --color-dark-gray: #2d2d2d;
-            --color-medium-gray: #4a4a4a;
-            --color-light-gray: #a0a0a0;
-            --color-gold: #d4af37;
-            --color-gold-light: #e8c96a;
+            --color-black: #0a0a0a;
+            --color-dark: #141414;
+            --color-gray-900: #1a1a1a;
+            --color-gray-800: #2a2a2a;
+            --color-gray-700: #3a3a3a;
+            --color-gray-600: #525252;
+            --color-gray-500: #737373;
+            --color-gray-400: #a3a3a3;
+            --color-gray-300: #d4d4d4;
             --color-white: #ffffff;
-            --color-cream: #faf9f7;
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --color-gold: #b8860b;
+            --color-gold-light: #daa520;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -31,11 +36,11 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--color-black);
-            background-color: var(--color-white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--color-gray-300);
+            background-color: var(--color-black);
             line-height: 1.6;
-            overflow-x: hidden;
+            font-weight: 400;
         }
 
         /* Header */
@@ -49,69 +54,65 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: var(--transition-smooth);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+            transition: var(--transition);
         }
 
         header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(20px);
             padding: 1rem 5%;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--color-gray-800);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        .logo img {
-            height: 40px;
+        .logo svg {
+            height: 32px;
             width: auto;
         }
 
         .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: var(--color-black);
-            letter-spacing: 2px;
-        }
-
-        .logo-text span {
-            color: var(--color-gold);
+            color: var(--color-white);
+            letter-spacing: 3px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 3rem;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--color-medium-gray);
-            font-size: 0.9rem;
+            color: var(--color-gray-400);
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: var(--transition-smooth);
+            transition: var(--transition);
             position: relative;
+        }
+
+        nav a:hover {
+            color: var(--color-white);
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -6px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 1px;
             background-color: var(--color-gold);
-            transition: var(--transition-smooth);
-        }
-
-        nav a:hover {
-            color: var(--color-black);
+            transition: var(--transition);
         }
 
         nav a:hover::after {
@@ -121,15 +122,16 @@
         .mobile-menu {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
+            padding: 10px;
         }
 
         .mobile-menu span {
-            width: 25px;
-            height: 2px;
-            background-color: var(--color-black);
-            transition: var(--transition-smooth);
+            width: 24px;
+            height: 1px;
+            background-color: var(--color-white);
+            transition: var(--transition);
         }
 
         /* Hero Section */
@@ -138,7 +140,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white) 50%, #f5f3ef 100%);
+            background-color: var(--color-black);
             position: relative;
             overflow: hidden;
         }
@@ -146,11 +148,13 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(184, 134, 11, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.02) 0%, transparent 40%);
             pointer-events: none;
         }
 
@@ -163,77 +167,93 @@
         }
 
         .hero-logo {
-            width: 200px;
+            width: 160px;
             height: auto;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 600;
-            color: var(--color-black);
-            margin-bottom: 1rem;
-            letter-spacing: 3px;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            font-weight: 300;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
         }
 
         .hero h1 span {
             color: var(--color-gold);
+            font-weight: 500;
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-medium-gray);
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
         }
 
         .hero-description {
             font-size: 1.1rem;
-            color: var(--color-light-gray);
-            max-width: 600px;
+            color: var(--color-gray-400);
+            max-width: 650px;
             margin: 0 auto 3rem;
             line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.7s forwards;
         }
 
         .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            background-color: var(--color-black);
+            gap: 1rem;
+            background-color: transparent;
             color: var(--color-white);
             padding: 1rem 2.5rem;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            transition: var(--transition-smooth);
-            animation: fadeInUp 1s ease-out 0.8s both;
+            border: 1px solid var(--color-gray-700);
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.9s forwards;
         }
 
         .hero-cta:hover {
-            background-color: var(--color-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background-color: var(--color-white);
+            color: var(--color-black);
+            border-color: var(--color-white);
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards, bounce 2s infinite 1.5s;
         }
 
         .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            stroke: var(--color-light-gray);
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-gray-600);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounce {
@@ -242,77 +262,71 @@
             60% { transform: translateX(-50%) translateY(-5px); }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Section Styles */
         section {
-            padding: 6rem 5%;
+            padding: 8rem 5%;
         }
 
         .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
+            max-width: 800px;
+            margin: 0 auto 5rem;
         }
 
         .section-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--color-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: block;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 600;
-            color: var(--color-black);
-            margin-bottom: 1rem;
+            font-weight: 300;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .section-subtitle {
-            color: var(--color-light-gray);
+            color: var(--color-gray-500);
             font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.7;
         }
 
         /* About Section */
         .about {
-            background-color: var(--color-white);
+            background-color: var(--color-dark);
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1200px;
+        .about-content {
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .about-content p {
-            color: var(--color-medium-gray);
-            font-size: 1.05rem;
+        .about-text {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .about-text p {
+            color: var(--color-gray-400);
+            font-size: 1rem;
             line-height: 1.9;
-            margin-bottom: 1.5rem;
+            font-weight: 300;
         }
 
         .about-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 3rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-gray-800);
         }
 
         .stat-item {
@@ -320,296 +334,233 @@
         }
 
         .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--color-gold);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--color-white);
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.85rem;
-            color: var(--color-light-gray);
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .about-visual {
-            position: relative;
-        }
-
-        .about-visual img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .about-visual::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: -20px;
-            bottom: -20px;
-            border: 2px solid var(--color-gold);
-            border-radius: 4px;
-            z-index: -1;
+            letter-spacing: 2px;
         }
 
         /* Companies Section */
         .companies {
-            background-color: var(--color-cream);
+            background-color: var(--color-black);
         }
 
         .companies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background-color: var(--color-gray-800);
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .company-card {
-            background-color: var(--color-white);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-radius: 4px;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .company-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition-smooth);
+            background-color: var(--color-black);
+            padding: 4rem 3rem;
+            transition: var(--transition);
         }
 
         .company-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            background-color: var(--color-dark);
         }
 
-        .company-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .company-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--color-black), var(--color-dark-gray));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--color-gold);
-            font-size: 1.5rem;
+        .company-tag {
+            font-size: 0.65rem;
             font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .company-card h3 {
-            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--color-black);
+            font-weight: 500;
+            color: var(--color-white);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .company-card p {
-            color: var(--color-light-gray);
+            color: var(--color-gray-500);
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         /* Values Section */
         .values {
-            background-color: var(--color-white);
+            background-color: var(--color-dark);
         }
 
         .values-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1px;
+            background-color: var(--color-gray-800);
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .value-item {
+            background-color: var(--color-dark);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 2rem;
         }
 
-        .value-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.5rem;
-            stroke: var(--color-gold);
+        .value-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .value-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--color-black);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--color-white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .value-item p {
             font-size: 0.9rem;
-            color: var(--color-light-gray);
-            line-height: 1.6;
+            color: var(--color-gray-500);
+            line-height: 1.7;
+            font-weight: 300;
         }
 
         /* Contact Section */
         .contact {
             background-color: var(--color-black);
-            color: var(--color-white);
             text-align: center;
-        }
-
-        .contact .section-tag {
-            color: var(--color-gold);
-        }
-
-        .contact .section-title {
-            color: var(--color-white);
-        }
-
-        .contact .section-subtitle {
-            color: var(--color-light-gray);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
+            gap: 4rem;
+            margin: 4rem 0;
             flex-wrap: wrap;
         }
 
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            text-align: center;
         }
 
-        .contact-item svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--color-gold);
-        }
-
-        .contact-item span {
-            color: var(--color-white);
-            font-size: 0.95rem;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--color-gold);
-            color: var(--color-black);
-            padding: 1rem 3rem;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .contact-item-label {
+            font-size: 0.65rem;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: var(--transition-smooth);
-            margin-top: 1rem;
+            color: var(--color-gray-600);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .contact-item-value {
+            color: var(--color-white);
+            font-size: 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item-value:hover {
+            color: var(--color-gold);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border: 1px solid var(--color-gray-700);
+            color: var(--color-white);
+            background-color: transparent;
         }
 
         .contact-btn:hover {
             background-color: var(--color-white);
-            transform: translateY(-3px);
+            color: var(--color-black);
+            border-color: var(--color-white);
+        }
+
+        .contact-btn.whatsapp {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+
+        .contact-btn.whatsapp:hover {
+            background-color: var(--color-gold);
+            color: var(--color-black);
         }
 
         /* Footer */
         footer {
-            background-color: var(--color-dark-gray);
-            color: var(--color-light-gray);
-            padding: 3rem 5%;
+            background-color: var(--color-dark);
+            padding: 4rem 5%;
             text-align: center;
+            border-top: 1px solid var(--color-gray-800);
         }
 
         .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--color-white);
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .footer-logo span {
-            color: var(--color-gold);
-        }
-
-        .footer-text {
-            font-size: 0.9rem;
             margin-bottom: 1.5rem;
+            letter-spacing: 4px;
         }
 
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
+        .footer-address {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
             margin-bottom: 2rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--color-medium-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition-smooth);
-        }
-
-        .footer-social a:hover {
-            background-color: var(--color-gold);
-            border-color: var(--color-gold);
-        }
-
-        .footer-social svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--color-white);
+            line-height: 1.8;
         }
 
         .footer-copy {
-            font-size: 0.8rem;
-            color: var(--color-medium-gray);
+            font-size: 0.75rem;
+            color: var(--color-gray-600);
             padding-top: 2rem;
-            border-top: 1px solid var(--color-medium-gray);
+            border-top: 1px solid var(--color-gray-800);
+            letter-spacing: 1px;
         }
 
         /* Responsive */
         @media (max-width: 992px) {
-            .about-grid {
+            .about-text {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
-            .about-visual {
-                order: -1;
-            }
-
-            .about-visual img {
-                height: 350px;
+            .companies-grid {
+                grid-template-columns: 1fr;
             }
 
             .values-grid {
@@ -624,10 +575,10 @@
                 right: -100%;
                 width: 70%;
                 height: 100vh;
-                background-color: var(--color-white);
-                padding: 5rem 2rem;
-                transition: var(--transition-smooth);
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                background-color: var(--color-black);
+                padding: 6rem 2rem;
+                transition: var(--transition);
+                border-left: 1px solid var(--color-gray-800);
             }
 
             nav.active {
@@ -636,7 +587,7 @@
 
             nav ul {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 2rem;
             }
 
             .mobile-menu {
@@ -645,7 +596,7 @@
             }
 
             .mobile-menu.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+                transform: rotate(45deg) translate(6px, 6px);
             }
 
             .mobile-menu.active span:nth-child(2) {
@@ -653,12 +604,12 @@
             }
 
             .mobile-menu.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
+                transform: rotate(-45deg) translate(6px, -6px);
             }
 
             .about-stats {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
             }
 
             .values-grid {
@@ -667,11 +618,16 @@
 
             .contact-info {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 2rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
             section {
-                padding: 4rem 5%;
+                padding: 5rem 5%;
             }
         }
 
@@ -679,7 +635,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.active {
@@ -692,15 +648,11 @@
     <!-- Header -->
     <header id="header">
         <div class="logo">
-            <svg viewBox="0 0 200 100" height="40">
-                <!-- V -->
-                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#2d2d2d"/>
-                <!-- 7 -->
-                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#2d2d2d"/>
-                <!-- M shadow -->
-                <polygon points="145,55 160,35 160,90 145,90" fill="#a0a0a0"/>
-                <!-- M -->
-                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#d4af37"/>
+            <svg viewBox="0 0 200 100" height="32">
+                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#ffffff"/>
+                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#ffffff"/>
+                <polygon points="145,55 160,35 160,90 145,90" fill="#525252"/>
+                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#b8860b"/>
             </svg>
             <span class="logo-text">V7M</span>
         </div>
@@ -713,7 +665,7 @@
             <ul>
                 <li><a href="#home">Início</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#atuacao">Atuação</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
@@ -723,31 +675,22 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <svg class="hero-logo" viewBox="0 0 200 100">
-                <!-- V -->
-                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#2d2d2d"/>
-                <!-- 7 -->
-                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#2d2d2d"/>
-                <!-- M shadow -->
-                <polygon points="145,55 160,35 160,90 145,90" fill="#a0a0a0"/>
-                <!-- M -->
-                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#d4af37"/>
+                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#ffffff"/>
+                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#ffffff"/>
+                <polygon points="145,55 160,35 160,90 145,90" fill="#525252"/>
+                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#b8860b"/>
             </svg>
             <h1>V7M <span>Holding</span></h1>
-            <p class="hero-subtitle">Excelência em Gestão Empresarial</p>
+            <p class="hero-subtitle">Gestão de Investimentos</p>
             <p class="hero-description">
-                Uma holding dedicada a impulsionar negócios de excelência. 
-                Administramos um portfólio diversificado de empresas e projetos 
-                que transformam mercados e geram valor sustentável.
+                Estrutura societária de gestão de investimentos com foco em educação, 
+                tecnologia e engenharia. Desenvolvemos projetos com potencial de 
+                transformação e retorno sustentável.
             </p>
-            <a href="#empresas" class="hero-cta">
-                Conheça nossas empresas
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
+            <a href="#atuacao" class="hero-cta">Conhecer Áreas de Atuação</a>
         </div>
         <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
                 <path d="M12 5v14M19 12l-7 7-7-7"/>
             </svg>
         </div>
@@ -756,81 +699,91 @@
     <!-- About Section -->
     <section class="about" id="sobre">
         <div class="section-header reveal">
-            <span class="section-tag">Sobre Nós</span>
-            <h2 class="section-title">Uma História de Visão e Excelência</h2>
-            <p class="section-subtitle">Construindo legados através de investimentos estratégicos</p>
+            <span class="section-tag">Sobre</span>
+            <h2 class="section-title">Estrutura e Propósito</h2>
+            <p class="section-subtitle">
+                A V7M Holding é uma estrutura de gestão de investimentos que 
+                desenvolve e administra projetos em setores estratégicos da economia.
+            </p>
         </div>
-        <div class="about-grid">
-            <div class="about-content reveal">
+        <div class="about-content">
+            <div class="about-text reveal">
                 <p>
-                    A V7M Holding nasceu da visão de empreendedores que acreditam no poder 
-                    da gestão profissionalizada e da inovação. Com uma abordagem única, 
-                    administramos um portfólio diversificado de empresas, cada uma líder 
-                    em seu segmento.
+                    Atuamos na identificação, desenvolvimento e gestão de oportunidades 
+                    de investimento com foco em médio e longo prazo. Nossa estrutura 
+                    permite a concentração de recursos e know-how em projetos 
+                    selecionados, buscando retornos consistentes e sustentáveis.
                 </p>
                 <p>
-                    Nossa missão é criar valor sustentável, fomentando o crescimento 
-                    orgânico e inorgânico das empresas do grupo, sempre com foco em 
-                    resultados de longo prazo e impacto positivo na sociedade.
+                    O grupo mantém operações diretas e indiretas nas áreas de educação 
+                    — com ênfase em modalidades EAD e programa de afiliados —, 
+                    tecnologia e inteligência artificial, além de projetos de 
+                    engenharia civil e infraestrutura.
                 </p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">10+</span>
-                        <span class="stat-label">Anos de Experiência</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">8</span>
-                        <span class="stat-label">Empresas no Grupo</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Colaboradores</span>
-                    </div>
-                </div>
             </div>
-            <div class="about-visual reveal">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="V7M Holding Office">
+            <div class="about-stats reveal">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Polos EAD</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Verticais</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">PR</span>
+                    <span class="stat-label">Sede em Curitiba</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Companies Section -->
-    <section class="companies" id="empresas">
+    <section class="companies" id="atuacao">
         <div class="section-header reveal">
-            <span class="section-tag">Nosso Portfólio</span>
-            <h2 class="section-title">Empresas do Grupo</h2>
-            <p class="section-subtitle">Conheça as empresas que fazem parte da nossa holding</p>
+            <span class="section-tag">Áreas de Atuação</span>
+            <h2 class="section-title">Projetos e Operações</h2>
+            <p class="section-subtitle">
+                Portfólio diversificado de operações e projetos em desenvolvimento.
+            </p>
         </div>
         <div class="companies-grid">
             <div class="company-card reveal">
-                <div class="company-icon">T</div>
-                <h3>TechVision</h3>
-                <p>Soluções tecnológicas inovadoras para transformação digital de empresas.</p>
+                <span class="company-tag">Principal</span>
+                <h3>Educação e Afiliados</h3>
+                <p>
+                    Estrutura de ensino a distância com polos físicos de apoio. 
+                    Desenvolvimento de rede de afiliados comercial para distribuição 
+                    de cursos, inicialmente focada em supletivo, com expansão 
+                    planejada para graduação e pós-graduação.
+                </p>
             </div>
             <div class="company-card reveal">
-                <div class="company-icon">C</div>
-                <h3>Capital Invest</h3>
-                <p> Gestão de investimentos e soluções financeiras para empresas e indivíduos.</p>
+                <span class="company-tag">Operação</span>
+                <h3>Polos EAD</h3>
+                <p>
+                    Unidades físicas credenciadas para suporte à educação a distância. 
+                    Infraestrutura de atendimento, tutoria e suporte acadêmico em 
+                    parceria com instituições de ensino superior.
+                </p>
             </div>
             <div class="company-card reveal">
-                <div class="company-icon">R</div>
-                <h3>Realty Prime</h3>
-                <p>Desenvolvimento imobiliário de alto padrão e gestão de patrimônios.</p>
+                <span class="company-tag">Desenvolvimento</span>
+                <h3>Tecnologia e IA</h3>
+                <p>
+                    Projetos de desenvolvimento de software, aplicações de 
+                    inteligência artificial e soluções tecnológicas. Foco em 
+                    ferramentas para otimização de processos e automação.
+                </p>
             </div>
             <div class="company-card reveal">
-                <div class="company-icon">L</div>
-                <h3>Logix Transport</h3>
-                <p>Logística integrada e soluções de transporte para todo o Brasil.</p>
-            </div>
-            <div class="company-card reveal">
-                <div class="company-icon">E</div>
-                <h3>EcoEnergy</h3>
-                <p>Soluções em energia renovável e sustentabilidade empresarial.</p>
-            </div>
-            <div class="company-card reveal">
-                <div class="company-icon">M</div>
-                <h3>MediaHub</h3>
-                <p>Produção de conteúdo e soluções de marketing digital.</p>
+                <span class="company-tag">Desenvolvimento</span>
+                <h3>Engenharia e Infraestrutura</h3>
+                <p>
+                    Projetos de engenharia civil, construção e infraestrutura. 
+                    Análise de oportunidades no setor imobiliário e de 
+                    infraestrutura urbana.
+                </p>
             </div>
         </div>
     </section>
@@ -838,107 +791,82 @@
     <!-- Values Section -->
     <section class="values">
         <div class="section-header reveal">
-            <span class="section-tag">Nossos Valores</span>
-            <h2 class="section-title">O Que Nos Define</h2>
-            <p class="section-subtitle">Princípios que guiam nossas decisões e ações</p>
+            <span class="section-tag">Princípios</span>
+            <h2 class="section-title">Diretrizes</h2>
+            <p class="section-subtitle">
+                Fundamentos que orientam nossas decisões de investimento e gestão.
+            </p>
         </div>
         <div class="values-grid">
             <div class="value-item reveal">
-                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                </svg>
-                <h4>Excelência</h4>
-                <p>Busca constante pela qualidade e superação de resultados.</p>
+                <span class="value-number">01</span>
+                <h4>Retorno</h4>
+                <p>Foco em resultados mensuráveis e sustentáveis a médio prazo.</p>
             </div>
             <div class="value-item reveal">
-                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
+                <span class="value-number">02</span>
                 <h4>Inovação</h4>
-                <p>Adoção de novas tecnologias e metodologias de ponta.</p>
+                <p>Adoção de tecnologias e modelos de negócio diferenciados.</p>
             </div>
             <div class="value-item reveal">
-                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-                <h4>Integridade</h4>
-                <p>Compromisso com a ética e transparência em todas as relações.</p>
+                <span class="value-number">03</span>
+                <h4>Disciplina</h4>
+                <p>Gestão rigorosa de recursos e processos decisórios.</p>
             </div>
             <div class="value-item reveal">
-                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <h4>Sustentabilidade</h4>
-                <p>Responsabilidade socioambiental em todos os negócios.</p>
+                <span class="value-number">04</span>
+                <h4>Compliance</h4>
+                <p>Conduta ética e conformidade regulatória em todas as operações.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contato">
-        <div class="contact-content">
-            <div class="section-header reveal">
-                <span class="section-tag">Contato</span>
-                <h2 class="section-title">Vamos Conversar</h2>
-                <p class="section-subtitle">Entre em contato para conhecer mais sobre nossas empresas e oportunidades de parceria</p>
+        <div class="section-header reveal">
+            <span class="section-tag">Contato</span>
+            <h2 class="section-title">Informações</h2>
+            <p class="section-subtitle">
+                Canais oficiais de comunicação da V7M Holding.
+            </p>
+        </div>
+        <div class="contact-info reveal">
+            <div class="contact-item">
+                <span class="contact-item-label">E-mail</span>
+                <a href="mailto:contato@v7m.org" class="contact-item-value">contato@v7m.org</a>
             </div>
-            <div class="contact-info reveal">
-                <div class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                    <span>contato@v7mholding.com.br</span>
-                </div>
-                <div class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                    </svg>
-                    <span>+55 (11) 3333-4444</span>
-                </div>
-                <div class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
-                    <span>São Paulo, SP - Brasil</span>
-                </div>
+            <div class="contact-item">
+                <span class="contact-item-label">Telefone</span>
+                <a href="tel:+554137984142" class="contact-item-value">(41) 3798-4142</a>
             </div>
-            <a href="mailto:contato@v7mholding.com.br" class="contact-btn reveal">Fale Conosco</a>
+            <div class="contact-item">
+                <span class="contact-item-label">Endereço</span>
+                <span class="contact-item-value" style="cursor: default;">Curitiba, PR</span>
+            </div>
+        </div>
+        <div class="contact-buttons reveal">
+            <a href="mailto:contato@v7m.org" class="contact-btn">Enviar E-mail</a>
+            <a href="https://wa.me/554137984142" target="_blank" class="contact-btn whatsapp">WhatsApp</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">V7M <span>Holding</span></div>
-        <p class="footer-text">Excelência em Gestão Empresarial</p>
-        <div class="footer-social">
-            <a href="#" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                    <circle cx="4" cy="4" r="2"/>
-                </svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                </svg>
-            </a>
-        </div>
-        <p class="footer-copy">© 2026 V7M Holding. Todos os direitos reservados.</p>
+        <div class="footer-logo">V7M</div>
+        <p class="footer-address">
+            R. Rockefeller, 958 - Rebouças<br>
+            Curitiba - PR, 80230-130
+        </p>
+        <p class="footer-copy">
+            © 2026 V7M Holding • v7m.org
+        </p>
     </footer>
 
     <script>
         // Header scroll effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
@@ -969,7 +897,7 @@
             revealElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                const revealPoint = 150;
+                const revealPoint = 100;
 
                 if (elementTop < windowHeight - revealPoint) {
                     element.classList.add('active');
@@ -980,7 +908,7 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -993,40 +921,6 @@
                 }
             });
         });
-
-        // Counter animation for stats
-        const animateCounter = (element, target) => {
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + (target < 10 ? '' : '+');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + (target < 10 ? '' : '+');
-                }
-            }, 30);
-        };
-
-        // Trigger counter animation when stats are visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const target = parseInt(stat.textContent);
-                        animateCounter(stat, target);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const aboutStats = document.querySelector('.about-stats');
-        if (aboutStats) {
-            statsObserver.observe(aboutStats);
-        }
     </script>
 </body>
 </html>
