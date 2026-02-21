@@ -60,10 +60,14 @@ body {
   background-color: var(--background);
   background-image:
     linear-gradient(to bottom, rgba(11, 12, 14, 0.7) 0%, rgba(11, 12, 14, 1) 100%),
-    url('assets/curitiba_skyline_corporate_dark.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.4;
+    /* Vertical bars simulating architectural lines */
+    linear-gradient(90deg, transparent 79px, rgba(255, 255, 255, 0.01) 80px, transparent 81px),
+    linear-gradient(transparent 119px, rgba(255, 255, 255, 0.01) 120px, transparent 121px),
+    /* Subtle glow from "infrastructure" */
+    radial-gradient(circle at 80% 20%, rgba(74, 108, 155, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 10% 70%, rgba(74, 108, 155, 0.03) 0%, transparent 30%);
+  background-size: 100% 100%, 120px 100%, 100% 160px, 100% 100%, 100% 100%;
+  opacity: 0.8;
 }
 
 .bg-grid {

@@ -1,69 +1,45 @@
-# Alpha6
+# V7M - Estruturação e Operação de Projetos
 
-Projeto Alpha6 - V7M Platform
+A V7M é uma organização voltada para a estruturação operacional e gestão de iniciativas em educação, tecnologia aplicada e engenharia, com presença física e estratégica no estado do Paraná.
 
-## 🚀 Desenvolvimento
+## 🏛️ Identidade Visual: Modern Infrastructure
 
-**Code Server**: https://victor.alpha6.codesrv.m33.live  
-**Senha**: `alpha6dev2026`
+Este repositório implementa o DNA visual da V7M através do sistema **"Modern Infrastructure"**:
+- **Paleta Slate Blue**: Profundidade e seriedade institucional (#0B0C0E).
+- **Tipografia Técnica**: Headlines em Space Grotesk Bold e detalhes em IBM Plex Mono.
+- **Textura Digital**: Grain texture overlay para acabamento técnico premium.
 
-## 📚 Guias
+## 🚀 Como Executar
 
-- [Guia do Desenvolvedor](GUIA_DESENVOLVEDOR.md) - Como trabalhar no code-server
-- [Cheat Sheet](CHEAT_SHEET.md) - Comandos rápidos de referência
-- [Setup Coolify](GUIA_COOLIFY.md) - Configuração do deploy
+O projeto é conteinerizado para garantir paridade total entre os ambientes de desenvolvimento e produção.
 
-## 🌐 Ambientes
+### Requisitos
+- Docker
+- Docker Compose
 
-| Ambiente | URL | Branch |
-|----------|-----|--------|
-| **Produção** | https://alpha6.m33.live | `main` |
-| **Staging** | https://staging.alpha6.m33.live | `release/*` |
-| **Dev** | https://dev.alpha6.m33.live | `dev/*` |
-
-## 🔄 Fluxo de Trabalho
-
+### Execução Local
 ```bash
-# 1. Entrar no projeto
-cd /workspace
+docker-compose up -d --build
+```
+Após o build, o site estará disponível em `http://localhost:3000`.
 
-# 2. Atualizar
-git pull origin main
+## 📁 Estrutura do Projeto
 
-# 3. Criar branch de trabalho
-git checkout -b dev/minha-feature
-
-# 4. Desenvolver (editar no VS Code)
-
-# 5. Commitar
-git add .
-git commit -m "feat: descrição da mudança"
-
-# 6. Push
-git push origin dev/minha-feature
-
-# 7. Deploy automático acontece!
+```text
+├── src/                # Código-fonte da aplicação
+│   ├── assets/         # Identidade visual e imagens (SVG, PNG)
+│   ├── index.html      # Estrutura principal
+│   ├── styles.css      # Design System & Modern Infrastructure
+│   └── index.js        # Servidor de entrega (Express)
+├── Dockerfile          # Build de produção (Node:20-alpine)
+└── docker-compose.yml  # Orquestração e Healthchecks
 ```
 
-## 📁 Estrutura
+## 🛠️ Operações Técnicas
 
-```
-├── src/              # Código fonte
-├── Dockerfile        # Build da imagem
-└── docker-compose.yml # Config Docker
-```
-
-## 🆘 Suporte
-
-- **Admin**: Victor (victormaestri@gmail.com)
-- **Problemas?** Veja [Troubleshooting](GUIA_DESENVOLVEDOR.md#-troubleshooting)
+- **Saúde do Serviço**: `/health` (Endpoint para monitoramento e Docker healthcheck).
+- **Segurança**: Cabeçalhos `x-powered-by` desabilitados; execução em sandbox não-root (Docker).
+- **CI/CD**: Integrado com Coolify para deploys automáticos via branch `main`.
 
 ---
-
-## 💻 Para Novos Devs
-
-1. Acesse o code-server
-2. Leia o [Guia do Desenvolvedor](GUIA_DESENVOLVEDOR.md)
-3. Consulte o [Cheat Sheet](CHEAT_SHEET.md) quando precisar
-
-Bem-vindo ao time! 🎉
+© 2026 V7M Platform. Todos os direitos reservados.
