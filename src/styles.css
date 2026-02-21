@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --background: #0B0C0E;
+  --foreground: #F6F7F9;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(246, 247, 249, 0.08);
+  --primary: #4A6C9B;
+  --secondary: #1E293B;
+  --muted: #A6ACB8;
+  --muted-soft: rgba(166, 172, 184, 0.6);
+  --accent: #4A6C9B;
+  --border: rgba(246, 247, 249, 0.15);
+  --max-width: 1100px;
+
+  /* Legacy mapping for compatibility */
+  --bg: var(--background);
+  --ink: var(--foreground);
+  --ink-soft: var(--muted);
+  --line: var(--border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.bg-city {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: var(--background);
+  background-image:
+    linear-gradient(to bottom, rgba(11, 12, 14, 0.7) 0%, rgba(11, 12, 14, 1) 100%),
+    url('assets/curitiba_skyline_corporate_dark.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(246, 247, 249, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 247, 249, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 100%);
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background-color: rgba(11, 12, 14, 0.7);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar.scrolled {
+  /* This class might be redundant with the new fixed topbar, but keeping it for now */
+  background-color: rgba(5, 5, 5, 0.92);
+  /* Adjusted to new theme */
+  border-color: var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+}
+
+.brand-text {
+  font-family: "Sora", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.menu {
+  display: flex;
+  gap: 1.35rem;
+}
+
+.menu a {
+  text-decoration: none;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.menu a:hover {
+  color: var(--ink);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45rem;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 17px;
+  height: 2px;
+  background-color: var(--ink);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+body.menu-open .menu-toggle span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+body.menu-open .menu-toggle span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+main {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 10rem 1.5rem 6rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  background: rgba(74, 108, 155, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+}
+
+.hero-title {
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+  max-width: 15ch;
+}
+
+.hero-copy {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+  max-width: 50ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-microcopy {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 2px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--bg);
+  /* Changed to use --bg for text color */
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-strong);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background-color: var(--accent-soft);
+}
+
+.hero-metrics {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.hero-metrics article {
+  background-color: rgba(255, 255, 255, 0.03);
+  /* Adjusted for dark theme */
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  /* Added glassmorphism effect */
+}
+
+.metric-value {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.section {
+  padding: 5.4rem 0;
+}
+
+.section-alt {
+  background-color: rgba(255, 255, 255, 0.03);
+  /* Adjusted for dark theme */
+  border: 1px solid var(--line);
+  /* Adjusted for dark theme */
+  border-left: 0;
+  border-right: 0;
+  backdrop-filter: blur(8px);
+  /* Added glassmorphism effect */
+}
+
+.section-head {
+  max-width: 70ch;
+  margin-bottom: 2rem;
+}
+
+.section-head h2 {
+  margin: 0.85rem 0 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.65rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--ink);
+  /* Ensure text is white */
+}
+
+/* First .cards and .card definition - keeping for now, but might be redundant */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  /* Adjusted for dark theme */
+  padding: 1.3rem;
+  backdrop-filter: blur(8px);
+  /* Added glassmorphism effect */
+}
+
+.card h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.2rem;
+  color: var(--ink);
+  /* Ensure text is white */
+}
+
+.card p {
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  /* Adjusted for dark theme */
+  border: 1px solid var(--line);
+  /* Adjusted for dark theme */
+  padding: 1rem 1.1rem;
+  backdrop-filter: blur(8px);
+  /* Added glassmorphism effect */
+}
+
+.timeline-step {
+  margin: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--bg);
+  /* Changed to use --bg for text color */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sora", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.timeline-item h3 {
+  margin: 0.1rem 0 0;
+  font-size: 1.1rem;
+  color: var(--ink);
+  /* Ensure text is white */
+}
+
+.timeline-item p {
+  margin: 0.55rem 0 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* Second .cards and .card definition - this one is being updated */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.card {
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.card h3 {
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.contact-card {
+  padding: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.contact-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.contact-card a {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.contact-card .hero-microcopy {
+  margin-top: 0.25rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .section {
+    padding: 5rem 1.5rem;
+  }
+
+  .section-head {
+    margin-bottom: 3rem;
+  }
+
+  .section-head h2 {
+    font-size: 1.75rem;
+  }
+
+  .cards,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-content .menu {
+    display: none;
+    /* Simplification: only showing branding on mobile for now or can add a simple link */
+  }
+}
+
+.footer {
+  padding: 6rem 1.5rem;
+  background-color: var(--accent);
+  color: white;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.footer-brand {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.copy {
+  font-size: 0.8125rem;
+  color: #64748b;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -1,930 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V7M Holding</title>
-    <meta name="description" content="V7M Holding - Gestão de investimentos em educação, tecnologia e engenharia.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-black: #0a0a0a;
-            --color-dark: #141414;
-            --color-gray-900: #1a1a1a;
-            --color-gray-800: #2a2a2a;
-            --color-gray-700: #3a3a3a;
-            --color-gray-600: #525252;
-            --color-gray-500: #737373;
-            --color-gray-400: #a3a3a3;
-            --color-gray-300: #d4d4d4;
-            --color-white: #ffffff;
-            --color-gold: #b8860b;
-            --color-gold-light: #daa520;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--color-gray-300);
-            background-color: var(--color-black);
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 1rem 5%;
-            border-bottom: 1px solid var(--color-gray-800);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo svg {
-            height: 32px;
-            width: auto;
-        }
-
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-white);
-            letter-spacing: 3px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--color-gray-400);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--color-white);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--color-gold);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .mobile-menu span {
-            width: 24px;
-            height: 1px;
-            background-color: var(--color-white);
-            transition: var(--transition);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--color-black);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(184, 134, 11, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.02) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-logo {
-            width: 160px;
-            height: auto;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 300;
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.3s forwards;
-        }
-
-        .hero h1 span {
-            color: var(--color-gold);
-            font-weight: 500;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            color: var(--color-gray-500);
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s forwards;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--color-gray-400);
-            max-width: 650px;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.7s forwards;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            background-color: transparent;
-            color: var(--color-white);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border: 1px solid var(--color-gray-700);
-            transition: var(--transition);
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.9s forwards;
-        }
-
-        .hero-cta:hover {
-            background-color: var(--color-white);
-            color: var(--color-black);
-            border-color: var(--color-white);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.2s forwards, bounce 2s infinite 1.5s;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--color-gray-600);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 8rem 5%;
-        }
-
-        .section-header {
-            max-width: 800px;
-            margin: 0 auto 5rem;
-        }
-
-        .section-tag {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 300;
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-        }
-
-        .section-subtitle {
-            color: var(--color-gray-500);
-            font-size: 1.1rem;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--color-dark);
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-text {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 5rem;
-        }
-
-        .about-text p {
-            color: var(--color-gray-400);
-            font-size: 1rem;
-            line-height: 1.9;
-            font-weight: 300;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            padding-top: 4rem;
-            border-top: 1px solid var(--color-gray-800);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--color-white);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--color-gray-500);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Companies Section */
-        .companies {
-            background-color: var(--color-black);
-        }
-
-        .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background-color: var(--color-gray-800);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .company-card {
-            background-color: var(--color-black);
-            padding: 4rem 3rem;
-            transition: var(--transition);
-        }
-
-        .company-card:hover {
-            background-color: var(--color-dark);
-        }
-
-        .company-tag {
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .company-card h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--color-white);
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .company-card p {
-            color: var(--color-gray-500);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Values Section */
-        .values {
-            background-color: var(--color-dark);
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background-color: var(--color-gray-800);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .value-item {
-            background-color: var(--color-dark);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .value-number {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--color-gold);
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .value-item h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--color-white);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .value-item p {
-            font-size: 0.9rem;
-            color: var(--color-gray-500);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: var(--color-black);
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            text-align: center;
-        }
-
-        .contact-item-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-gray-600);
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
-        .contact-item-value {
-            color: var(--color-white);
-            font-size: 1rem;
-            font-weight: 400;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-item-value:hover {
-            color: var(--color-gold);
-        }
-
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            border: 1px solid var(--color-gray-700);
-            color: var(--color-white);
-            background-color: transparent;
-        }
-
-        .contact-btn:hover {
-            background-color: var(--color-white);
-            color: var(--color-black);
-            border-color: var(--color-white);
-        }
-
-        .contact-btn.whatsapp {
-            border-color: var(--color-gold);
-            color: var(--color-gold);
-        }
-
-        .contact-btn.whatsapp:hover {
-            background-color: var(--color-gold);
-            color: var(--color-black);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--color-dark);
-            padding: 4rem 5%;
-            text-align: center;
-            border-top: 1px solid var(--color-gray-800);
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-            letter-spacing: 4px;
-        }
-
-        .footer-address {
-            font-size: 0.85rem;
-            color: var(--color-gray-500);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .footer-copy {
-            font-size: 0.75rem;
-            color: var(--color-gray-600);
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-gray-800);
-            letter-spacing: 1px;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-text {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .companies-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background-color: var(--color-black);
-                padding: 6rem 2rem;
-                transition: var(--transition);
-                border-left: 1px solid var(--color-gray-800);
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .mobile-menu {
-                display: flex;
-                z-index: 1001;
-            }
-
-            .mobile-menu.active span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            section {
-                padding: 5rem 5%;
-            }
-        }
-
-        /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha6 | V7M Platform</title>
+  <meta name="description" content="Alpha6 e a pagina institucional da V7M Platform, com foco em educacao, tecnologia e engenharia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="logo">
-            <svg viewBox="0 0 200 100" height="32">
-                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#ffffff"/>
-                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#ffffff"/>
-                <polygon points="145,55 160,35 160,90 145,90" fill="#525252"/>
-                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#b8860b"/>
-            </svg>
-            <span class="logo-text">V7M</span>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav id="nav">
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#atuacao">Atuação</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div class="grain-overlay"></div>
+  <div class="bg-city"></div>
+  <div class="bg-grid"></div>
+  <header class="topbar">
+    <div class="topbar-content">
+      <a href="#inicio" class="brand" aria-label="V7M Início">
+        <img src="assets/logo.svg" alt="Logo V7M" class="brand-logo">
+        <span class="brand-text">V7M</span>
+      </a>
+      <nav class="menu">
+        <a href="https://wa.me/554137984142?text=Olá,%20vi%20o%20site%20da%20V7M%20e%20gostaria%20de%20entender%20melhor%20as%20iniciativas%20educacionais%20e%20polos." class="btn btn-primary" target="_blank" rel="noreferrer">Iniciativas Educacionais</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <svg class="hero-logo" viewBox="0 0 200 100">
-                <polygon points="10,10 40,10 55,50 70,10 100,10 65,90 45,90" fill="#ffffff"/>
-                <polygon points="110,10 170,10 135,90 105,90 135,25 110,25" fill="#ffffff"/>
-                <polygon points="145,55 160,35 160,90 145,90" fill="#525252"/>
-                <polygon points="155,45 170,25 170,90 185,90 185,10 165,10 155,25" fill="#b8860b"/>
-            </svg>
-            <h1>V7M <span>Holding</span></h1>
-            <p class="hero-subtitle">Gestão de Investimentos</p>
-            <p class="hero-description">
-                Estrutura societária de gestão de investimentos com foco em educação, 
-                tecnologia e engenharia. Desenvolvemos projetos com potencial de 
-                transformação e retorno sustentável.
-            </p>
-            <a href="#atuacao" class="hero-cta">Conhecer Áreas de Atuação</a>
-        </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-        </div>
+  <main>
+    <section class="hero" id="inicio">
+      <span class="eyebrow">Institucional</span>
+      <h1 class="hero-title">V7M: INFRAESTRUTURA E GESTÃO NO PARANÁ</h1>
+      <p class="hero-copy">
+        Atuação em projetos próprios e parcerias estratégicas, com presença operacional regional.
+      </p>
+      <div class="hero-actions">
+        <a href="#atuacao" class="btn btn-ghost">Conhecer atuação</a>
+        <span class="hero-microcopy">Foco em estruturação e operação de ativos reais.</span>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="sobre">
-        <div class="section-header reveal">
-            <span class="section-tag">Sobre</span>
-            <h2 class="section-title">Estrutura e Propósito</h2>
-            <p class="section-subtitle">
-                A V7M Holding é uma estrutura de gestão de investimentos que 
-                desenvolve e administra projetos em setores estratégicos da economia.
-            </p>
-        </div>
-        <div class="about-content">
-            <div class="about-text reveal">
-                <p>
-                    Atuamos na identificação, desenvolvimento e gestão de oportunidades 
-                    de investimento com foco em médio e longo prazo. Nossa estrutura 
-                    permite a concentração de recursos e know-how em projetos 
-                    selecionados, buscando retornos consistentes e sustentáveis.
-                </p>
-                <p>
-                    O grupo mantém operações diretas e indiretas nas áreas de educação 
-                    — com ênfase em modalidades EAD e programa de afiliados —, 
-                    tecnologia e inteligência artificial, além de projetos de 
-                    engenharia civil e infraestrutura.
-                </p>
-            </div>
-            <div class="about-stats reveal">
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Polos EAD</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Verticais</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">PR</span>
-                    <span class="stat-label">Sede em Curitiba</span>
-                </div>
-            </div>
-        </div>
+    <section class="section" id="atuacao">
+      <div class="section-head">
+        <span class="section-tag">Atuação</span>
+        <h2>Estruturação e Operação de Ativos Reais</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Educação & Polos</h3>
+          <p>Estruturação e suporte operacional de polos educacionais, com implantação de soluções EAD e projetos de ampliação de acesso à certificação educacional.</p>
+        </article>
+        <article class="card">
+          <h3>Tecnologia Aplicada (IA)</h3>
+          <p>Uso estratégico de automação e IA para integração de sistemas, eficiência operacional e suporte a iniciativas educacionais e empresariais.</p>
+        </article>
+        <article class="card">
+          <h3>Engenharia & Infraestrutura</h3>
+          <p>Atuação em projetos de engenharia e desenvolvimento de empreendimentos imobiliários e iniciativas de infraestrutura.</p>
+        </article>
+        <article class="card">
+          <h3>Estruturação de Operações</h3>
+          <p>Criação e organização de estruturas operacionais para viabilização e sustentação de projetos próprios e em parceria.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Companies Section -->
-    <section class="companies" id="atuacao">
-        <div class="section-header reveal">
-            <span class="section-tag">Áreas de Atuação</span>
-            <h2 class="section-title">Projetos e Operações</h2>
-            <p class="section-subtitle">
-                Portfólio diversificado de operações e projetos em desenvolvimento.
-            </p>
-        </div>
-        <div class="companies-grid">
-            <div class="company-card reveal">
-                <span class="company-tag">Principal</span>
-                <h3>Educação e Afiliados</h3>
-                <p>
-                    Estrutura de ensino a distância com polos físicos de apoio. 
-                    Desenvolvimento de rede de afiliados comercial para distribuição 
-                    de cursos, inicialmente focada em supletivo, com expansão 
-                    planejada para graduação e pós-graduação.
-                </p>
-            </div>
-            <div class="company-card reveal">
-                <span class="company-tag">Operação</span>
-                <h3>Polos EAD</h3>
-                <p>
-                    Unidades físicas credenciadas para suporte à educação a distância. 
-                    Infraestrutura de atendimento, tutoria e suporte acadêmico em 
-                    parceria com instituições de ensino superior.
-                </p>
-            </div>
-            <div class="company-card reveal">
-                <span class="company-tag">Desenvolvimento</span>
-                <h3>Tecnologia e IA</h3>
-                <p>
-                    Projetos de desenvolvimento de software, aplicações de 
-                    inteligência artificial e soluções tecnológicas. Foco em 
-                    ferramentas para otimização de processos e automação.
-                </p>
-            </div>
-            <div class="company-card reveal">
-                <span class="company-tag">Desenvolvimento</span>
-                <h3>Engenharia e Infraestrutura</h3>
-                <p>
-                    Projetos de engenharia civil, construção e infraestrutura. 
-                    Análise de oportunidades no setor imobiliário e de 
-                    infraestrutura urbana.
-                </p>
-            </div>
-        </div>
+    <section class="section section-alt" id="presenca">
+      <div class="section-head">
+        <p class="eyebrow">Presença</p>
+        <h2>Presença física e operacional regional.</h2>
+        <p>Atuação direta em diferentes localidades do Paraná, com rede própria de polos educacionais em expansão e infraestrutura de suporte local.</p>
+      </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="values">
-        <div class="section-header reveal">
-            <span class="section-tag">Princípios</span>
-            <h2 class="section-title">Diretrizes</h2>
-            <p class="section-subtitle">
-                Fundamentos que orientam nossas decisões de investimento e gestão.
-            </p>
-        </div>
-        <div class="values-grid">
-            <div class="value-item reveal">
-                <span class="value-number">01</span>
-                <h4>Retorno</h4>
-                <p>Foco em resultados mensuráveis e sustentáveis a médio prazo.</p>
-            </div>
-            <div class="value-item reveal">
-                <span class="value-number">02</span>
-                <h4>Inovação</h4>
-                <p>Adoção de tecnologias e modelos de negócio diferenciados.</p>
-            </div>
-            <div class="value-item reveal">
-                <span class="value-number">03</span>
-                <h4>Disciplina</h4>
-                <p>Gestão rigorosa de recursos e processos decisórios.</p>
-            </div>
-            <div class="value-item reveal">
-                <span class="value-number">04</span>
-                <h4>Compliance</h4>
-                <p>Conduta ética e conformidade regulatória em todas as operações.</p>
-            </div>
-        </div>
+    <section class="section" id="diretrizes">
+      <div class="section-head">
+        <span class="section-tag">Diretrizes</span>
+        <h2>Princípios de Execução e Governança</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Execução no mundo real</h3>
+          <p>Foco na implantação prática e resultados operacionais tangíveis.</p>
+        </article>
+        <article class="card">
+          <h3>Inovação aplicada</h3>
+          <p>Tecnologia utilizada como ferramenta de eficiência e escala.</p>
+        </article>
+        <article class="card">
+          <h3>Disciplina operacional</h3>
+          <p>Processos rigorosos para garantir a sustentabilidade dos projetos.</p>
+        </article>
+        <article class="card">
+          <h3>Conformidade e responsabilidade</h3>
+          <p>Governança sólida e compromisso com normas e regulamentações.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contato">
-        <div class="section-header reveal">
-            <span class="section-tag">Contato</span>
-            <h2 class="section-title">Informações</h2>
-            <p class="section-subtitle">
-                Canais oficiais de comunicação da V7M Holding.
-            </p>
-        </div>
-        <div class="contact-info reveal">
-            <div class="contact-item">
-                <span class="contact-item-label">E-mail</span>
-                <a href="mailto:contato@v7m.org" class="contact-item-value">contato@v7m.org</a>
-            </div>
-            <div class="contact-item">
-                <span class="contact-item-label">Telefone</span>
-                <a href="tel:+554137984142" class="contact-item-value">(41) 3798-4142</a>
-            </div>
-            <div class="contact-item">
-                <span class="contact-item-label">Endereço</span>
-                <span class="contact-item-value" style="cursor: default;">Curitiba, PR</span>
-            </div>
-        </div>
-        <div class="contact-buttons reveal">
-            <a href="mailto:contato@v7m.org" class="contact-btn">Enviar E-mail</a>
-            <a href="https://wa.me/554137984142" target="_blank" class="contact-btn whatsapp">WhatsApp</a>
-        </div>
+
+    <section class="section contact" id="contato">
+      <div class="section-head">
+        <span class="section-tag">Contato</span>
+        <h2>PRONTO PARA OPERAR</h2>
+        <p>Conversas diretas sobre estruturação de projetos e parcerias operacionais.</p>
+      </div>
+      <div class="contact-grid">
+        <article class="contact-card">
+          <p class="contact-label">WhatsApp Institucional</p>
+          <a href="https://wa.me/554137984142?text=Olá,%20vi%20o%20site%20da%20V7M%20e%20gostaria%20de%20entender%20melhor%20as%20iniciativas%20educacionais%20e%20polos.">Falar pelo WhatsApp</a>
+          <span class="hero-microcopy">Resposta em horário comercial</span>
+        </article>
+        <article class="contact-card">
+          <p class="contact-label">Email</p>
+          <a href="mailto:contato@v7m.org">contato@v7m.org</a>
+        </article>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">V7M</div>
-        <p class="footer-address">
-            R. Rockefeller, 958 - Rebouças<br>
-            Curitiba - PR, 80230-130
-        </p>
-        <p style="font-size: 0.8rem; color: var(--color-gray-600); margin-bottom: 1rem;">
-            <a href="termos-de-uso.html" style="color: var(--color-gray-500);">Termos de Uso</a> • 
-            <a href="politica-de-privacidade.html" style="color: var(--color-gray-500);">Política de Privacidade</a>
-        </p>
-        <p class="footer-copy">
-            © 2026 V7M Holding • v7m.org
-        </p>
-    </footer>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <p class="footer-title">V7M</p>
+        <p>Estrutura operacional com presença regional</p>
+      </div>
+      <div class="footer-links">
+        <a href="termos-de-uso.html">Termos de Uso</a>
+        <a href="politica-de-privacidade.html">Política de Privacidade</a>
+      </div>
+      <p class="copy">© 2026 V7M. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-    <script>
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu
-        const mobileMenu = document.getElementById('mobileMenu');
-        const nav = document.getElementById('nav');
-
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-
-        // Close mobile menu on link click
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-
-        // Reveal animation on scroll
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealOnScroll = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                const revealPoint = 100;
-
-                if (elementTop < windowHeight - revealPoint) {
-                    element.classList.add('active');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+  <script src="main.js" defer></script>
 </body>
 </html>
